@@ -1,0 +1,18 @@
+Index: app/src/main/java/com/example/android/navigation/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright 2018, The Android Open Source Project\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.navigation\r\n\r\nimport androidx.databinding.DataBindingUtil\r\nimport android.os.Bundle\r\nimport androidx.drawerlayout.widget.DrawerLayout\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.navigation.NavController\r\nimport androidx.navigation.NavDestination\r\nimport androidx.navigation.Navigation\r\nimport androidx.navigation.findNavController\r\nimport androidx.navigation.ui.NavigationUI\r\nimport com.example.android.navigation.databinding.ActivityMainBinding\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        @Suppress(\"UNUSED_VARIABLE\")\r\n        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)\r\n        val navController = this.findNavController(R.id.myNavHostFragment)\r\n        NavigationUI.setupActionBarWithNavController(this, navController)\r\n    }\r\n\r\n    override fun onSupportNavigateUp(): Boolean {\r\n        val navController = this.findNavController(R.id.myNavHostFragment)\r\n        return navController.navigateUp()\r\n\r\n        //Hello maalek\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/android/navigation/MainActivity.kt b/app/src/main/java/com/example/android/navigation/MainActivity.kt
+--- a/app/src/main/java/com/example/android/navigation/MainActivity.kt	
++++ b/app/src/main/java/com/example/android/navigation/MainActivity.kt	
+@@ -40,6 +40,6 @@
+         val navController = this.findNavController(R.id.myNavHostFragment)
+         return navController.navigateUp()
+ 
+-        //Hello maalek
++
+     }
+ }

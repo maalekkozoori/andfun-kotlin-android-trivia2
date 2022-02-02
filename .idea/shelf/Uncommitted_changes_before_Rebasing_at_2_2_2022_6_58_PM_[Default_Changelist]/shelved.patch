@@ -1,0 +1,56 @@
+Index: app/src/main/java/com/example/android/navigation/MainActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright 2018, The Android Open Source Project\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.navigation\r\n\r\nimport androidx.databinding.DataBindingUtil\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.drawerlayout.widget.DrawerLayout\r\nimport androidx.navigation.NavController\r\nimport androidx.navigation.NavDestination\r\nimport androidx.navigation.findNavController\r\nimport androidx.navigation.ui.AppBarConfiguration\r\nimport androidx.navigation.ui.NavigationUI\r\nimport com.example.android.navigation.databinding.ActivityMainBinding\r\n\r\nclass MainActivity : AppCompatActivity() {\r\n    private lateinit var drawerLayout: DrawerLayout\r\n    private lateinit var appBarConfiguration : AppBarConfiguration\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)\r\n        drawerLayout = binding.drawerLayout\r\n        val navController = this.findNavController(R.id.myNavHostFragment)\r\n        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)\r\n        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)\r\n        // prevent nav gesture if not on start destination\r\n        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->\r\n            if (nd.id == nc.graph.startDestination) {\r\n                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)\r\n            } else {\r\n                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)\r\n            }\r\n        }\r\n        NavigationUI.setupWithNavController(binding.navView, navController)\r\n    }\r\n\r\n    override fun onSupportNavigateUp(): Boolean {\r\n        val navController = this.findNavController(R.id.myNavHostFragment)\r\n        return NavigationUI.navigateUp(navController, appBarConfiguration)\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/android/navigation/MainActivity.kt b/app/src/main/java/com/example/android/navigation/MainActivity.kt
+--- a/app/src/main/java/com/example/android/navigation/MainActivity.kt	(revision 61fea9c7bf750ede6dfb0b6e83462538de7bab6b)
++++ b/app/src/main/java/com/example/android/navigation/MainActivity.kt	(date 1643815678270)
+@@ -18,38 +18,28 @@
+ 
+ import androidx.databinding.DataBindingUtil
+ import android.os.Bundle
+-import androidx.appcompat.app.AppCompatActivity
+ import androidx.drawerlayout.widget.DrawerLayout
++import androidx.appcompat.app.AppCompatActivity
+ import androidx.navigation.NavController
+ import androidx.navigation.NavDestination
++import androidx.navigation.Navigation
+ import androidx.navigation.findNavController
+-import androidx.navigation.ui.AppBarConfiguration
+ import androidx.navigation.ui.NavigationUI
+ import com.example.android.navigation.databinding.ActivityMainBinding
+ 
+ class MainActivity : AppCompatActivity() {
+-    private lateinit var drawerLayout: DrawerLayout
+-    private lateinit var appBarConfiguration : AppBarConfiguration
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
++        @Suppress("UNUSED_VARIABLE")
+         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+-        drawerLayout = binding.drawerLayout
+         val navController = this.findNavController(R.id.myNavHostFragment)
+-        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
+-        // prevent nav gesture if not on start destination
+-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, bundle: Bundle? ->
+-            if (nd.id == nc.graph.startDestination) {
+-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+-            } else {
+-                drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+-            }
+-        }
+-        NavigationUI.setupWithNavController(binding.navView, navController)
++        NavigationUI.setupActionBarWithNavController(this, navController)
+     }
+ 
+     override fun onSupportNavigateUp(): Boolean {
+         val navController = this.findNavController(R.id.myNavHostFragment)
+-        return NavigationUI.navigateUp(navController, appBarConfiguration)
++        return navController.navigateUp()
++
++        //Hello maalek
+     }
+ }

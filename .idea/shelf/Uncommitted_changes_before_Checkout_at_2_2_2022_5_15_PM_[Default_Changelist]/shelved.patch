@@ -1,0 +1,156 @@
+Index: app/src/main/res/navigation/navigation.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!--\r\n  ~ Copyright 2018, The Android Open Source Project\r\n  ~\r\n  ~ Licensed under the Apache License, Version 2.0 (the \"License\");\r\n  ~ you may not use this file except in compliance with the License.\r\n  ~ You may obtain a copy of the License at\r\n  ~\r\n  ~     http://www.apache.org/licenses/LICENSE-2.0\r\n  ~\r\n  ~ Unless required by applicable law or agreed to in writing, software\r\n  ~ distributed under the License is distributed on an \"AS IS\" BASIS,\r\n  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n  ~ See the License for the specific language governing permissions and\r\n  ~ limitations under the License.\r\n  -->\r\n\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/nav_root\"\r\n    app:startDestination=\"@+id/titleFragment\">\r\n    <fragment\r\n        android:id=\"@+id/titleFragment\"\r\n        android:name=\"com.example.android.navigation.TitleFragment\"\r\n        android:label=\"@string/android_trivia\"\r\n        tools:layout=\"@layout/fragment_title\">\r\n        <action\r\n            android:id=\"@+id/action_titleFragment_to_gameFragment\"\r\n            app:destination=\"@id/gameFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/gameFragment\"\r\n        android:name=\"com.example.android.navigation.GameFragment\"\r\n        android:label=\"@string/android_trivia\"\r\n        tools:layout=\"@layout/fragment_game\">\r\n        <action\r\n            android:id=\"@+id/action_gameFragment_to_gameOverFragment\"\r\n            app:destination=\"@id/gameOverFragment\"\r\n            app:popUpTo=\"@+id/gameFragment\"\r\n            app:popUpToInclusive=\"true\" />\r\n        <action\r\n            android:id=\"@+id/action_gameFragment_to_gameWonFragment\"\r\n            app:destination=\"@id/gameWonFragment\"\r\n            app:popUpTo=\"@+id/gameFragment\"\r\n            app:popUpToInclusive=\"true\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/gameWonFragment\"\r\n        android:name=\"com.example.android.navigation.GameWonFragment\"\r\n        android:label=\"@string/android_trivia\"\r\n        tools:layout=\"@layout/fragment_game_won\">\r\n        <action\r\n            android:id=\"@+id/action_gameWonFragment_to_gameFragment\"\r\n            app:destination=\"@id/gameFragment\"\r\n            app:popUpTo=\"@+id/titleFragment\"/>\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/gameOverFragment\"\r\n        android:name=\"com.example.android.navigation.GameOverFragment\"\r\n        android:label=\"@string/android_trivia\"\r\n        tools:layout=\"@layout/fragment_game_over\">\r\n        <action\r\n            android:id=\"@+id/action_gameOverFragment_to_gameFragment\"\r\n            app:destination=\"@id/gameFragment\"\r\n            app:popUpTo=\"@+id/titleFragment\" />\r\n    </fragment>\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/navigation.xml b/app/src/main/res/navigation/navigation.xml
+--- a/app/src/main/res/navigation/navigation.xml	(revision 5899c5559fa74c29b665a01ffeb46c7830250e58)
++++ b/app/src/main/res/navigation/navigation.xml	(date 1643809430292)
+@@ -36,33 +36,31 @@
+         tools:layout="@layout/fragment_game">
+         <action
+             android:id="@+id/action_gameFragment_to_gameOverFragment"
+-            app:destination="@id/gameOverFragment"
+-            app:popUpTo="@+id/gameFragment"
+-            app:popUpToInclusive="true" />
++            app:destination="@id/gameOverFragment" />
++        <!-- TODO (01) Add popUpTo gameFragment with inclusive=true
++             Go to the editor, select PopTo GameFragment in the attributes pane
++             with the inclusive flag checked. -->
+         <action
+             android:id="@+id/action_gameFragment_to_gameWonFragment"
+-            app:destination="@id/gameWonFragment"
+-            app:popUpTo="@+id/gameFragment"
+-            app:popUpToInclusive="true" />
++            app:destination="@id/gameWonFragment" />
++        <!-- TODO (02) Add popUpTo gameFragment with inclusive=true
++             Go to the editor, select PopTo GameFragment in the attributes pane
++             with the inclusive flag checked. -->
+     </fragment>
+     <fragment
+         android:id="@+id/gameWonFragment"
+         android:name="com.example.android.navigation.GameWonFragment"
+         android:label="@string/android_trivia"
+         tools:layout="@layout/fragment_game_won">
+-        <action
+-            android:id="@+id/action_gameWonFragment_to_gameFragment"
+-            app:destination="@id/gameFragment"
+-            app:popUpTo="@+id/titleFragment"/>
++        <!-- TODO (04) Add an action connecting the gameWonFragment to the gameFragment
++             Select PopTo TitleFragment in the editor with inclusive turned off -->
+     </fragment>
+     <fragment
+         android:id="@+id/gameOverFragment"
+         android:name="com.example.android.navigation.GameOverFragment"
+         android:label="@string/android_trivia"
+         tools:layout="@layout/fragment_game_over">
+-        <action
+-            android:id="@+id/action_gameOverFragment_to_gameFragment"
+-            app:destination="@id/gameFragment"
+-            app:popUpTo="@+id/titleFragment" />
++        <!-- TODO (03) Add an action connecting the gameOverFragment to the gameFragment
++             Select PopTo TitleFragment in the editor with inclusive turned off -->
+     </fragment>
+ </navigation>
+\ No newline at end of file
+Index: app/src/main/java/com/example/android/navigation/GameOverFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright 2018, The Android Open Source Project\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.navigation\r\n\r\nimport androidx.databinding.DataBindingUtil\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport androidx.navigation.findNavController\r\nimport com.example.android.navigation.databinding.FragmentGameOverBinding\r\n\r\nclass GameOverFragment : Fragment() {\r\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,\r\n                              savedInstanceState: Bundle?): View? {\r\n        // Inflate the layout for this fragment\r\n        val binding: FragmentGameOverBinding = DataBindingUtil.inflate(\r\n                inflater, R.layout.fragment_game_over, container, false)\r\n        binding.tryAgainButton.setOnClickListener { view: View ->\r\n            view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)\r\n        }\r\n        return binding.root\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/android/navigation/GameOverFragment.kt b/app/src/main/java/com/example/android/navigation/GameOverFragment.kt
+--- a/app/src/main/java/com/example/android/navigation/GameOverFragment.kt	(revision 5899c5559fa74c29b665a01ffeb46c7830250e58)
++++ b/app/src/main/java/com/example/android/navigation/GameOverFragment.kt	(date 1643809433617)
+@@ -31,9 +31,8 @@
+         // Inflate the layout for this fragment
+         val binding: FragmentGameOverBinding = DataBindingUtil.inflate(
+                 inflater, R.layout.fragment_game_over, container, false)
+-        binding.tryAgainButton.setOnClickListener { view: View ->
+-            view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)
+-        }
++        // TODO (05) Add an onClick Handler for the tryAgain button that navigates to the gameFragment
++        // using action_gameOverFragment_to_gameFragment
+         return binding.root
+     }
+ }
+Index: app/src/main/java/com/example/android/navigation/GameWonFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n * Copyright 2018, The Android Open Source Project\r\n *\r\n * Licensed under the Apache License, Version 2.0 (the \"License\");\r\n * you may not use this file except in compliance with the License.\r\n * You may obtain a copy of the License at\r\n *\r\n *     http://www.apache.org/licenses/LICENSE-2.0\r\n *\r\n * Unless required by applicable law or agreed to in writing, software\r\n * distributed under the License is distributed on an \"AS IS\" BASIS,\r\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\r\n * See the License for the specific language governing permissions and\r\n * limitations under the License.\r\n */\r\n\r\npackage com.example.android.navigation\r\n\r\nimport android.content.ActivityNotFoundException\r\nimport android.content.Intent\r\nimport androidx.databinding.DataBindingUtil\r\nimport android.os.Bundle\r\nimport androidx.fragment.app.Fragment\r\nimport androidx.core.app.ShareCompat\r\nimport android.view.LayoutInflater\r\nimport android.view.Menu\r\nimport android.view.MenuInflater\r\nimport android.view.MenuItem\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.Toast\r\nimport androidx.navigation.findNavController\r\nimport com.example.android.navigation.databinding.FragmentGameWonBinding\r\nimport android.content.pm.ResolveInfo\r\nimport android.content.pm.PackageManager\r\n\r\n\r\n\r\nclass GameWonFragment : Fragment() {\r\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,\r\n                              savedInstanceState: Bundle?): View? {\r\n        // Inflate the layout for this fragment\r\n        val binding: FragmentGameWonBinding = DataBindingUtil.inflate(\r\n                inflater, R.layout.fragment_game_won, container, false)\r\n        binding.nextMatchButton.setOnClickListener { view: View ->\r\n            view.findNavController().navigate(R.id.action_gameWonFragment_to_gameFragment)\r\n        }\r\n        return binding.root\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/android/navigation/GameWonFragment.kt b/app/src/main/java/com/example/android/navigation/GameWonFragment.kt
+--- a/app/src/main/java/com/example/android/navigation/GameWonFragment.kt	(revision 5899c5559fa74c29b665a01ffeb46c7830250e58)
++++ b/app/src/main/java/com/example/android/navigation/GameWonFragment.kt	(date 1643809436140)
+@@ -42,9 +42,8 @@
+         // Inflate the layout for this fragment
+         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
+                 inflater, R.layout.fragment_game_won, container, false)
+-        binding.nextMatchButton.setOnClickListener { view: View ->
+-            view.findNavController().navigate(R.id.action_gameWonFragment_to_gameFragment)
+-        }
++        // TODO (06) Add an onClick Handler for the nextMatch button that navigates to the gameFragment
++        // using action_gameWonFragment_to_gameFragment
+         return binding.root
+     }
+ }
+Index: .idea/navEditor.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"navEditor-manualLayoutAlgorithm2\">\r\n    <option name=\"myPositions\">\r\n      <map>\r\n        <entry key=\"navigation.xml\">\r\n          <value>\r\n            <LayoutPositions>\r\n              <option name=\"myPositions\">\r\n                <map>\r\n                  <entry key=\"gameFragment\">\r\n                    <value>\r\n                      <LayoutPositions>\r\n                        <option name=\"myPosition\">\r\n                          <Point>\r\n                            <option name=\"x\" value=\"266\" />\r\n                            <option name=\"y\" value=\"144\" />\r\n                          </Point>\r\n                        </option>\r\n                        <option name=\"myPositions\">\r\n                          <map>\r\n                            <entry key=\"action_gameFragment_to_gameOverFragment\">\r\n                              <value>\r\n                                <LayoutPositions />\r\n                              </value>\r\n                            </entry>\r\n                            <entry key=\"action_gameFragment_to_gameWonFragment\">\r\n                              <value>\r\n                                <LayoutPositions />\r\n                              </value>\r\n                            </entry>\r\n                          </map>\r\n                        </option>\r\n                      </LayoutPositions>\r\n                    </value>\r\n                  </entry>\r\n                  <entry key=\"gameOverFragment\">\r\n                    <value>\r\n                      <LayoutPositions>\r\n                        <option name=\"myPosition\">\r\n                          <Point>\r\n                            <option name=\"x\" value=\"499\" />\r\n                            <option name=\"y\" value=\"20\" />\r\n                          </Point>\r\n                        </option>\r\n                        <option name=\"myPositions\">\r\n                          <map>\r\n                            <entry key=\"action_gameOverFragment_to_gameFragment\">\r\n                              <value>\r\n                                <LayoutPositions />\r\n                              </value>\r\n                            </entry>\r\n                          </map>\r\n                        </option>\r\n                      </LayoutPositions>\r\n                    </value>\r\n                  </entry>\r\n                  <entry key=\"gameWonFragment\">\r\n                    <value>\r\n                      <LayoutPositions>\r\n                        <option name=\"myPosition\">\r\n                          <Point>\r\n                            <option name=\"x\" value=\"12\" />\r\n                            <option name=\"y\" value=\"12\" />\r\n                          </Point>\r\n                        </option>\r\n                        <option name=\"myPositions\">\r\n                          <map>\r\n                            <entry key=\"action_gameWonFragment_to_gameFragment\">\r\n                              <value>\r\n                                <LayoutPositions />\r\n                              </value>\r\n                            </entry>\r\n                          </map>\r\n                        </option>\r\n                      </LayoutPositions>\r\n                    </value>\r\n                  </entry>\r\n                  <entry key=\"titleFragment\">\r\n                    <value>\r\n                      <LayoutPositions>\r\n                        <option name=\"myPosition\">\r\n                          <Point>\r\n                            <option name=\"x\" value=\"34\" />\r\n                            <option name=\"y\" value=\"145\" />\r\n                          </Point>\r\n                        </option>\r\n                        <option name=\"myPositions\">\r\n                          <map>\r\n                            <entry key=\"action_titleFragment_to_gameFragment\">\r\n                              <value>\r\n                                <LayoutPositions />\r\n                              </value>\r\n                            </entry>\r\n                          </map>\r\n                        </option>\r\n                      </LayoutPositions>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </LayoutPositions>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/navEditor.xml b/.idea/navEditor.xml
+--- a/.idea/navEditor.xml	(revision 5899c5559fa74c29b665a01ffeb46c7830250e58)
++++ b/.idea/navEditor.xml	(date 1643809436171)
+@@ -13,8 +13,8 @@
+                       <LayoutPositions>
+                         <option name="myPosition">
+                           <Point>
+-                            <option name="x" value="266" />
+-                            <option name="y" value="144" />
++                            <option name="x" value="256" />
++                            <option name="y" value="54" />
+                           </Point>
+                         </option>
+                         <option name="myPositions">
+@@ -39,8 +39,20 @@
+                       <LayoutPositions>
+                         <option name="myPosition">
+                           <Point>
+-                            <option name="x" value="499" />
+-                            <option name="y" value="20" />
++                            <option name="x" value="500" />
++                            <option name="y" value="12" />
++                          </Point>
++                        </option>
++                      </LayoutPositions>
++                    </value>
++                  </entry>
++                  <entry key="gameWonFragment">
++                    <value>
++                      <LayoutPositions>
++                        <option name="myPosition">
++                          <Point>
++                            <option name="x" value="500" />
++                            <option name="y" value="368" />
+                           </Point>
+                         </option>
+                         <option name="myPositions">
+@@ -81,8 +93,8 @@
+                       <LayoutPositions>
+                         <option name="myPosition">
+                           <Point>
+-                            <option name="x" value="34" />
+-                            <option name="y" value="145" />
++                            <option name="x" value="12" />
++                            <option name="y" value="54" />
+                           </Point>
+                         </option>
+                         <option name="myPositions">
